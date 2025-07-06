@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <label for="valorEmReal">Valor em Real:
+            <input id="valorEmReal" type="number" step="0.01">
+        </label>
+        <select name="moeda">
+            <option value="dolar" selected>Dólar</option>
+            <option value="euro">Euro</option>
+            <option value="libra">Libra</option>
+            <option value="bitcoin">Bitcoin</option>
+        </select>
+        <button onclick="calculaConversoes()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+</body>
+
+<script>
+
+    const umRealEmDolar = 0.18484288354;
+    const umRealEmEuro = 0.1572327044;
+    const umRealEmLibra = 0.13550135501;
+    const umRealEmBitcoin = 0.00000168451;
+
+
+    const taxas = {
+        dolar: { taxa: 0.18484288354, simbolo: '$', fix: 2 },
+        euro: { taxa: 0.1572327044, simbolo: '€', fix: 2 },
+        libra: { taxa: 0.13550135501, simbolo: '£', fix: 2 },
+        bitcoin: { taxa: 0.00000168451, simbolo: '₿', fix: 8 },
+    };
+
+    const calculaConversoes = () => {
+        const valorEmReal = parseFloat(document.querySelector('#valorEmReal').value);
+        const moedaObjetivo = document.querySelector('select[name=moeda]').value;
+        const resultado = document.querySelector('#resultado');
+
+        if (!valorEmReal || valorEmReal <= 0) {
+            resultado.textContent = 'Digite um valor válido.';
+            return;
+        }
+
+        const { taxa, simbolo, fix } = taxas[moedaObjetivo];
+        const valorConvertido = (valorEmReal * taxa).toFixed(fix);
+
+        resultado.textContent = `${simbolo}${valorConvertido}`;
+    };
+
+</script>
+
+</html>

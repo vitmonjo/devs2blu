@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatorial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Cálculo de IMC</h1>
+    <label for="peso">Peso em kg:
+        <input type="number" id="peso" />
+    </label>
+    <label for="altura">Altura em m:
+        <input type="number" id="altura" />
+    </label>
+    <button onclick="calcularIMC()">Calcular</button>
+
+    <div id="resultado"></div>
+</body>
+
+<script>
+    const calcularIMC = () => {
+        const peso = parseFloat(document.querySelector('#peso').value);
+        const altura = parseFloat(document.querySelector('#altura').value);
+        const resultadoDiv = document.querySelector('#resultado');
+
+        resultadoDiv.textContent = '';
+
+        if (isNaN(peso)) {
+            resultadoDiv.textContent = 'Digite um peso válido!';
+            return;
+        }
+
+        if (isNaN(altura)) {
+            resultadoDiv.textContent = 'Digite uma altura válida!';
+            return;
+        }
+
+        const imc = (peso / (Math.pow(altura, 2))).toFixed(2);
+
+        const mensagens = [
+            { limite: 18.4, texto: `${imc} - Abaixo do peso` },
+            { limite: 24.9, texto: `${imc} - Peso normal` },
+            { limite: 29.9, texto: `${imc} - Sobrepeso` },
+            { limite: 34.9, texto: `${imc} - Obesidade grau 1` },
+            { limite: 39.9, texto: `${imc} - Obesidade grau 2` },
+            { limite: Infinity, texto: `${imc} - Obesidade grau 3` }
+        ];
+
+        const resultado = mensagens.find(m => imc <= m.limite);
+
+        resultadoDiv.textContent = resultado.texto;
+    };
+
+</script>
+
+</html>

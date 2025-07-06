@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 id="placar">Tente adivinhar o número! (1-100)</h1>
+    <label for="tentativa"><input type="number" id="tentativa"></label>
+    <button onclick="tentarAdivinhar()">Tentar</button>
+</body>
+
+<script>
+    const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+    let tentativas = 0;
+
+    const tentarAdivinhar = () => {
+        const placar = document.querySelector('#placar');
+        const tentativa = parseFloat(document.querySelector('#tentativa').value);
+
+        if (!tentativa || tentativa < 1 || tentativa > 100) {
+            placar.textContent = "Digite um número entre 1 e 100!";
+            return;
+        }
+
+        tentativas++;
+
+        const diferenca = Math.abs(numeroAleatorio - tentativa);
+
+        const mensagens = [
+            { limite: 0, texto: `🎉 Acertou! Tentativas: ${tentativas}` },
+            { limite: 5, texto: "🔥 Quase!" },
+            { limite: 10, texto: "😊 Perto!" },
+            { limite: 20, texto: "😐 Longe!" },
+            { limite: Infinity, texto: "❄️ Muito longe!" },
+        ];
+
+        const resultado = mensagens.find(m => diferenca <= m.limite);
+        placar.textContent = resultado.texto;
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector("#tentativa");
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                tentarAdivinhar();
+            }
+        });
+    });
+
+</script>
+
+</html>

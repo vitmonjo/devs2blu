@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Aleatório</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>Quiz de Conhecimentos Gerais</h1>
+        <div id="question-container"></div>
+        <button id="next-btn">Próxima</button>
+        <div id="result" class="hidden"></div>
+    </div>
+
+    <script>
+        const perguntas = [
+            {
+                pergunta: "Qual o menor país do mundo?",
+                opcoes: ["Nauru", "Vaticano", "Mônaco", "Tuvalu"],
+                correta: 1
+            },
+            {
+                pergunta: "Qual o maior oceano do planeta?",
+                opcoes: ["Atlântico", "Índico", "Ártico", "Pacífico"],
+                correta: 3
+            },
+            {
+                pergunta: "Qual a capital da Austrália?",
+                opcoes: ["Sydney", "Melbourne", "Brisbane", "Canberra"],
+                correta: 3
+            },
+            {
+                pergunta: "Em que continente fica o Egito?",
+                opcoes: ["Ásia", "África", "Europa", "América"],
+                correta: 1
+            },
+            {
+                pergunta: "Quem escreveu 'Dom Casmurro'?",
+                opcoes: ["Machado de Assis", "Carlos Drummond", "Clarice Lispector", "Manuel Bandeira"],
+                correta: 0
+            },
+            {
+                pergunta: "Qual o elemento químico representado por 'O'?",
+                opcoes: ["Ouro", "Osmio", "Oxigênio", "Ozônio"],
+                correta: 2
+            },
+            {
+                pergunta: "Quantos segundos tem uma hora?",
+                opcoes: ["3.600", "600", "36.000", "60.000"],
+                correta: 0
+            },
+            {
+                pergunta: "Qual planeta é conhecido como planeta vermelho?",
+                opcoes: ["Marte", "Júpiter", "Saturno", "Vênus"],
+                correta: 0
+            },
+            {
+                pergunta: "Em que ano o homem pisou na Lua?",
+                opcoes: ["1959", "1965", "1969", "1971"],
+                correta: 2
+            },
+            {
+                pergunta: "Qual é o plural de lápis?",
+                opcoes: ["Lápises", "Lápis", "Lápisus", "Lápiz"],
+                correta: 1
+            }
+        ];
+
+        let perguntasSelecionadas = [];
+        let perguntaAtual = 0;
+        let acertos = 0;
+
+        const container = document.getElementById("question-container");
+        const botaoProxima = document.getElementById("next-btn");
+        const resultado = document.getElementById("result");
+
+        function embaralhar(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function iniciarQuiz() {
+            perguntasSelecionadas = embaralhar([...perguntas]).slice(0, 5);
+            perguntaAtual = 0;
+            acertos = 0;
+            resultado.classList.add("hidden");
+            mostrarPergunta();
+        }
+
+        function mostrarPergunta() {
+            const atual = perguntasSelecionadas[perguntaAtual];
+            container.innerHTML = `
+        <h2>${atual.pergunta}</h2>
+        <form id="quiz-form">
+          ${atual.opcoes.map((opcao, index) => `
+            <label>
+              <input type="radio" name="resposta" value="${index}" required>
+              ${opcao}
+            </label><br>
+          `).join('')}
+        </form>
+      `;
+        }
+
+        botaoProxima.addEventListener("click", () => {
+            const form = document.getElementById("quiz-form");
+            const respostaSelecionada = form.resposta.value;
+
+            if (parseInt(respostaSelecionada) === perguntasSelecionadas[perguntaAtual].correta) {
+                acertos++;
+            }
+
+            perguntaAtual++;
+            if (perguntaAtual < perguntasSelecionadas.length) {
+                mostrarPergunta();
+            } else {
+                mostrarResultado();
+            }
+        });
+
+        function mostrarResultado() {
+            container.innerHTML = "";
+            resultado.classList.remove("hidden");
+            resultado.textContent = `Você acertou ${acertos} de ${perguntasSelecionadas.length} perguntas!`;
+            botaoProxima.textContent = "Reiniciar";
+            botaoProxima.addEventListener("click", iniciarQuiz, { once: true });
+        }
+
+        iniciarQuiz();
+    </script>
+</body>
+
+</html>

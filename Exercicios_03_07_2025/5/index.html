@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatorial</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Fatorial</h1>
+    <label for="numero">Número:
+        <input type="number" id="numero" />
+    </label>
+    <button onclick="calcularFatorial()">Calcular</button>
+
+    <div id="resultado"></div>
+</body>
+
+<script>
+    const calcularFatorial = () => {
+        const numero = parseFloat(document.querySelector('#numero').value);
+        const resultadoDiv = document.querySelector('#resultado');
+
+        resultadoDiv.textContent = '';
+
+        if (isNaN(numero)) {
+            resultadoDiv.textContent = 'Digite um número válido!';
+            return;
+        }
+
+        const fatorial = fatorialRecursivo(numero);
+
+        resultadoDiv.textContent = `${numero}! é ${fatorial}`;
+    };
+
+    const fatorialRecursivo = (num) => {
+        if (num == 0 || num == 1) {
+            return 1;
+        }
+        return num * fatorialRecursivo(num - 1);
+    }
+</script>
+
+</html>

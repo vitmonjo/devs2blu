@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuada</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Tabuada</h1>
+    <label for="numero">Número:
+        <input type="number" id="numero" />
+    </label>
+    <button onclick="calcularTabuada()">Calcular</button>
+
+    <div id="resultado"></div>
+</body>
+
+<script>
+    const calcularTabuada = () => {
+        const numero = parseFloat(document.querySelector('#numero').value);
+        const resultadoDiv = document.querySelector('#resultado');
+
+        resultadoDiv.innerHTML = '';
+
+        if (isNaN(numero)) {
+            resultadoDiv.textContent = 'Digite um número válido!';
+            return;
+        }
+
+        const tabela = document.createElement('table');
+        const tbody = document.createElement('tbody');
+
+        for (let i = 1; i <= 10; i++) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            const texto = document.createTextNode(`${numero} x ${i} = ${numero * i}`);
+            cell.appendChild(texto);
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+
+        tabela.appendChild(tbody);
+        resultadoDiv.appendChild(tabela);
+    };
+</script>
+
+</html>
