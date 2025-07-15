@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Endereços</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<div class="container">
+    <h1>Cadastro de Endereços</h1>
+
+    <div class="form-section">
+        <div class="form-grid">
+            <label for="nome">Nome
+                <input type="text" id="nome">
+            </label>
+            <label for="cep">CEP
+                <input type="text" id="cep">
+            </label>
+            <label for="estado">Estado
+                <input type="text" id="estado" readonly>
+            </label>
+            <label for="cidade">Cidade
+                <input type="text" id="cidade" readonly>
+            </label>
+            <label for="bairro">Bairro
+                <input type="text" id="bairro" readonly>
+            </label>
+            <label for="logradouro">Logradouro
+                <input type="text" id="logradouro" readonly>
+            </label>
+        </div>
+
+        <div class="button-container">
+            <button id="btn-add" onclick="cadastrar()">Adicionar</button>
+            <button id="btn-update" onclick="atualizar()">Alterar</button>
+            <button id="btn-remove" onclick="remover()">Remover</button>
+            <button id="btn-cancel" onclick="cancelar()">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="table-section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>CEP</th>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Logradouro</th>
+                </tr>
+            </thead>
+            <tbody id="tabela">
+                <tr class="empty-state">
+                    <td colspan="7">Nenhum endereço cadastrado ainda</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</html>

@@ -1,0 +1,49 @@
+{
+  "enderecos": [
+    {
+      "id": "b685",
+      "nome": "Daniel Silva",
+      "cep": "69922-227",
+      "estado": "AC",
+      "cidade": "Rio Branco",
+      "bairro": "Irineu Serra",
+      "logradouro": "Rua Hortencia da Silva"
+    },
+    {
+      "id": "fb5b",
+      "nome": "Maria Santos",
+      "cep": "35170-360",
+      "estado": "MG",
+      "cidade": "Coronel Fabriciano",
+      "bairro": "Belvedere",
+      "logradouro": "Rua Trinta e Dois"
+    },
+    {
+      "id": "9f71",
+      "nome": "João Oliveira",
+      "cep": "79073-025",
+      "estado": "MS",
+      "cidade": "Campo Grande",
+      "bairro": "Jardim Campo Nobre",
+      "logradouro": "Rua Aristidia Ennes Bucker"
+    },
+    {
+      "id": "e3f7",
+      "nome": "Ana Costa",
+      "cep": "68906-523",
+      "estado": "AP",
+      "cidade": "Macapá",
+      "bairro": "Marabaixo",
+      "logradouro": "Avenida São Sebastião"
+    },
+    {
+      "id": "5844",
+      "nome": "Carlos Pereira",
+      "cep": "55004-094",
+      "estado": "PE",
+      "cidade": "Caruaru",
+      "bairro": "Nossa Senhora das Dores",
+      "logradouro": "4ª Travessa Capitão Luís dos Reis"
+    }
+  ]
+}
