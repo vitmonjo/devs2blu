@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CRUD Pessoas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>👥 CRUD Pessoas</h1>
+
+        <div class="add-section">
+            <h2>➕ Adicionar Nova Pessoa</h2>
+            <div class="form-group">
+                <div class="input-group">
+                    <label for="addNome">Nome</label>
+                    <input id="addNome" type="text" placeholder="Digite o nome" />
+                </div>
+                <div class="input-group">
+                    <label for="addIdade">Idade</label>
+                    <input id="addIdade" type="number" placeholder="Digite a idade" min="0" />
+                </div>
+                <button class="btn btn-primary btn-add-pessoa" onclick="adicionar()">Adicionar Pessoa</button>
+            </div>
+        </div>
+
+        <div class="table-section">
+            <div class="table-header">
+                <h2>📋 Lista de Pessoas</h2>
+                <button class="btn btn-primary" onclick="listar()">🔄 Atualizar Lista</button>
+            </div>
+            <div id="tableContainer">
+                <div class="loading">Carregando...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
